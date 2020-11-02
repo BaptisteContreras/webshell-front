@@ -1,8 +1,8 @@
 <template>
    <v-row>
        <StateCard
-        v-for="card in cards"
-        :key="card"
+        v-for="(card, index) in cards"
+        :key="index"
         :color="card.color"
         :title="card.title"
         :state="getState(card.state)"

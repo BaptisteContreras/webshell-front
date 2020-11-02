@@ -4,14 +4,16 @@
      <v-divider
              inset
      ></v-divider>
+     <ActivesConnectionsCard></ActivesConnectionsCard>
  </v-container>
 </template>
 
 <script>
-    import States from "../components/States";
+    import States from "../components/MainPage/States";
+    import ActivesConnectionsCard from "../components/MainPage/ActivesConnectionsCard";
   export default {
     name: "MainPage",
-    components: {States},
+    components: {ActivesConnectionsCard, States},
     computed : {
       States
     }

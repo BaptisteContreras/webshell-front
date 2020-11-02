@@ -4,6 +4,20 @@ const state = {
   logger : 'Up',
   lastDate : null,
   hosts  : 0,
+  activeConnection : [
+    {
+      host : '127.0.0.1',
+      port : 9000
+    },
+    {
+      host : '192.168.1.25',
+      port : 25
+    },
+    {
+      host : '192.168.1.120',
+      port : 907
+    }
+  ]
 
 
 }
@@ -20,7 +34,10 @@ const getters = {
     return state.lastDate
   },
   getNbHosts: (state) => {
-    return state.hosts
+    return state.activeConnection.length
+  },
+  getActivesConnexions: (state) => {
+    return state.activeConnection
   },
 }
 
@@ -35,8 +52,8 @@ const actions = {
   setLastDateState: (store, p) => {
     store.commit('SET_LAST_DATE_STATE', p)
   },
-  setNbHosts: (store, p) => {
-    store.commit('SET_NB_HOSTS', p)
+  setActivesConnexions: (store, p) => {
+    store.commit('SET_ACTIVES_CONNEXION', p)
   },
 
 }
@@ -52,8 +69,8 @@ const mutations = {
   SET_LAST_DATE_STATE: (state, s) => {
     state.lastDate = s
   },
-  SET_NB_HOSTS: (state, s) => {
-    state.hosts = s
+  SET_ACTIVES_CONNEXION: (state, s) => {
+    state.activeConnection = s
   },
 
 }
