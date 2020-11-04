@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <Shell :session="getSession"></Shell>
+        <Shell :sessionId="getSession.id"></Shell>
     </v-container>
 </template>
 
@@ -22,6 +22,7 @@
       }
 
       this.session = session;
+      this.$store.dispatch('socket/setCurrentSession', session.id)
     },
 
     computed : {

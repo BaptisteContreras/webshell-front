@@ -2,7 +2,8 @@
        <v-container>
            <v-row>
                <v-col cols="2">
-                   <h1>Session</h1>
+
+                   <ShellSessionInfo :session="getCurrentSession" />
                </v-col>
                <v-col cols="10">
                    <v-card
@@ -29,27 +30,25 @@
                              </v-virtual-scroll>
                          </v-card-text>
                    </v-card>
-                   <v-form>
-                       <v-container >
-                           <v-row>
-                               <v-col cols="12">
-                                   <v-text-field
+                   <v-container >
+                       <v-row>
+                           <v-col cols="12">
+                               <v-text-field
 
-                                           v-model="command"
-                                           :append-outer-icon="command ? 'mdi-send' : ''"
-                                           filled
-                                           clear-icon="mdi-close-circle"
-                                           clearable
-                                           solo-inverted
-                                           label="rm -rf /*"
-                                           type="text"
-                                           @click:append-outer="sendCommand"
-                                           @click:clear="clearCommand"
-                                   ></v-text-field>
-                               </v-col>
-                           </v-row>
-                       </v-container>
-                   </v-form>
+                                       v-model="command"
+                                       :append-outer-icon="command ? 'mdi-send' : ''"
+                                       filled
+                                       clear-icon="mdi-close-circle"
+                                       clearable
+                                       solo-inverted
+                                       label="rm -rf /*"
+                                       type="text"
+                                       @click:append-outer="sendCommand"
+                                       @click:clear="clearCommand"
+                               ></v-text-field>
+                           </v-col>
+                       </v-row>
+                   </v-container>
                </v-col>
            </v-row>
 
@@ -59,27 +58,26 @@
 <script>
   import socketUtils from "../../mixins/socket/utils/socketUtils";
   import ShellMessage from "./ShellMessage";
+  import ShellSessionInfo from "./ShellSessionInfo";
 
   export default {
     name: "Shell",
-    components: {ShellMessage},
+    components: {ShellSessionInfo, ShellMessage},
     data() {
       return {
         command : '',
-        commandQueue : [],
-        messages : [...this.session.messages],
-        lastCommandId : this.session.lastCommandId
       }
     },
     props : {
-      session : {
+      sessionId : {
         required : true
       }
     },
     mixins : [socketUtils],
     methods : {
       generateCommandId(){
-        return this.lastCommandId++
+        this.$store.dispatch('socket/incrementLastCommandId', this.sessionId)
+        return this.$store.getters['socket/getCurrentSession'].lastCommandId
       },
       sendCommand(){
         let commandId = this.generateCommandId();
@@ -87,7 +85,7 @@
           {
             command : this.command,
             commandId,
-            session : this.session.id
+            sessionId : this.sessionId
           }
         )))
         this.clearCommand()
@@ -95,12 +93,17 @@
       clearCommand () {
         this.command = ''
       },
+
       queueCommand(command){
-        this.messages.push({
-          message : command.command,
-          type : 'command',
-          statut: 'normal',
-          commandId : command.commandId
+        this.$store.dispatch('socket/addSessionMessage', {
+          id : this.sessionId,
+          message : {
+            message : command.command,
+            type : 'COMMAND',
+            statut: 'PENDING',
+            date : new Date(),
+            commandId : command.commandId
+          }
         })
 
         return command;
@@ -108,7 +111,11 @@
     },
     computed : {
       getMessages(){
-        return this.messages
+        return [...this.$store.getters['socket/getCurrentSession'].messages]
+      },
+
+      getCurrentSession(){
+        return this.$store.getters['socket/getCurrentSession']
       },
 
       getShellHeight(){

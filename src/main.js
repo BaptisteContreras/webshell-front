@@ -20,6 +20,7 @@ new Vue({
     let socket = io("localhost:3000");
     this.$store.dispatch("socket/setIO", socket)
     initEvent(socket, this)
+    this.$vuetify.theme.dark = true
   },
   render: h => h(App)
 }).$mount('#app')
