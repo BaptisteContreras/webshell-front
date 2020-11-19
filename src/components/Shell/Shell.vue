@@ -34,7 +34,7 @@
                        <v-row>
                            <v-col cols="12">
                                <v-text-field
-
+                                        @keyup.enter="sendCommand"
                                        v-model="command"
                                        :append-outer-icon="command ? 'mdi-send' : ''"
                                        filled
@@ -80,6 +80,7 @@
         return this.$store.getters['socket/getCurrentSession'].lastCommandId
       },
       sendCommand(){
+        if (!this.command) return ;
         let commandId = this.generateCommandId();
         this.getSocketConnexion().emit("sendCommand", JSON.stringify(this.queueCommand(
           {
@@ -122,6 +123,10 @@
         return window.innerHeight;
       }
     },
+
+    beforeDestroy() {
+      this.$store.dispatch("socket/setCurrentSession", null)
+    }
 
   };
 

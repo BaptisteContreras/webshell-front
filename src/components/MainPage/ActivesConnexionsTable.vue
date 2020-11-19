@@ -78,7 +78,9 @@
         console.log(item)
       },
       closeShell(item){
-        item;
+        this.getSocketConnexion().emit("deleteSession", JSON.stringify({
+          sessionId : item.session
+        }))
       },
       goToShell(item){
         this.$router.push('shell/'+item.session)

@@ -12,6 +12,9 @@ export default function (io, _this) {
   io.on('sessionNotFound', (data) => {
     console.log(data)
   });
+  io.on('deleteSessionSuccess', (data) => {
+    _this.$store.dispatch('socket/removeSession', {id : data.sessionId})
+  });
   // Result
   io.on('NcSessionTechnicalError', (data) => {
     console.log(data)
