@@ -35,8 +35,7 @@
                 <v-icon>mdi-connection</v-icon>
             </v-btn>
             <v-btn
-                    href="https://github.com/vuetifyjs/vuetify/releases/latest"
-                    target="_blank"
+                    
                     text
             >
                 <v-icon>mdi-logout-variant</v-icon>
