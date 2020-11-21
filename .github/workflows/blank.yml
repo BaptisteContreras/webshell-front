@@ -20,7 +20,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Deploy and build front
         run: |
           sshpass -p ${{ secrets.SSHPASS }} ssh -oStrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.IP }} "cd front && git pull origin master"
-          sshpass -p ${{ secrets.SSHPASS }} ssh -oStrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.IP }} "cd front && npm install && npm build"
+          sshpass -p ${{ secrets.SSHPASS }} ssh -oStrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.IP }} "cd front && npm install && npm run build"
