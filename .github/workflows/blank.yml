@@ -22,4 +22,4 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
-          sshpass -p ${{ secrets.SSHPASS }} ssh -oStrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.IP }} "touch test"
+          sshpass -p ${{ secrets.SSHPASS }} ssh -oStrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.IP }} "cd front && git pull origin master"
