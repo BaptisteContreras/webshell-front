@@ -23,3 +23,4 @@ jobs:
       - name: Run a one-line script
         run: |
           sshpass -p ${{ secrets.SSHPASS }} ssh -oStrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.IP }} "cd front && git pull origin master"
+          sshpass -p ${{ secrets.SSHPASS }} ssh -oStrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.IP }} "cd front && npm install && npm build"
