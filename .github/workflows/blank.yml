@@ -25,6 +25,6 @@ jobs:
       - name: Deploy and build front
         run: |
           sshpass -p ${{ secrets.SSHPASS }} ssh -oStrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.IP }} "cd front && git pull origin master"
-          sshpass -p ${{ secrets.SSHPASS }} ssh -oStrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.IP }} "cd front && npm install && npm run build"
+          sshpass -p ${{ secrets.SSHPASS }} ssh -oStrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.IP }} "cd front && npm install && vue-cli-service build --mode production"
  
           
