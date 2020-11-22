@@ -11,6 +11,7 @@ Vue.config.productionTip = false
 
 Vue.mixin(globalMixins);
 
+console.log(process.env)
 
 new Vue({
   vuetify,
