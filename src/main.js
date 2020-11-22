@@ -17,7 +17,7 @@ new Vue({
   store,
   router,
   mounted(){
-    let socket = io("localhost:3000");
+    let socket = io("localhost:3001");
     this.$store.dispatch("socket/setIO", socket)
     initEvent(socket, this)
     this.$vuetify.theme.dark = true
