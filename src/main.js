@@ -17,7 +17,7 @@ new Vue({
   store,
   router,
   mounted(){
-    let socket = io("localhost:3001");
+    let socket = io(process.env.SOCKET_HOST+":"+process.env.SOCKET_PORT);
     this.$store.dispatch("socket/setIO", socket)
     initEvent(socket, this)
     this.$vuetify.theme.dark = true
