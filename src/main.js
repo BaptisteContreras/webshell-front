@@ -11,14 +11,14 @@ Vue.config.productionTip = false
 
 Vue.mixin(globalMixins);
 
-console.log(process.env)
+
 
 new Vue({
   vuetify,
   store,
   router,
   mounted(){
-    let socket = io(process.env.SOCKET_HOST+":"+process.env.SOCKET_PORT);
+    let socket = io(process.env.VUE_APP_SOCKET_HOST+":"+process.env.VUE_APP_SOCKET_PORT);
     this.$store.dispatch("socket/setIO", socket)
     initEvent(socket, this)
     this.$vuetify.theme.dark = true
