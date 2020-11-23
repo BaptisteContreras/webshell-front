@@ -35,7 +35,7 @@
                 <v-icon>mdi-connection</v-icon>
             </v-btn>
             <v-btn
-                    
+
                     text
             >
                 <v-icon>mdi-logout-variant</v-icon>
@@ -58,6 +58,14 @@
       },
       backToMenu(){
         this.$router.push('/')
+      },
+      handleRefreshVictims(){
+        fetch(this.api + "/port").then(async (d) => {
+          this.$store.dispatch('apiState/setActivesConnexions', await d.text())
+
+        }).catch((e) => {
+          console.log(e);
+        });
       }
     },
     computed: {
@@ -67,6 +75,10 @@
       getThemeButtonIcon() {
         return this.$vuetify.theme.dark ? "mdi-brightness-4" : "mdi-brightness-6";
       }
+    },
+
+    mounted() {
+      setInterval(this.handleRefreshVictims, 1500)
     }
   };
 </script>
