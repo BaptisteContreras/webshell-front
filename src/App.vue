@@ -20,6 +20,9 @@
             <v-btn @click="backToMenu()" color="purple">
                 Menu
             </v-btn>
+          <v-btn @click="backToVpn()" color="green" class="ml-10" >
+            Vpn
+          </v-btn>
             <v-spacer></v-spacer>
             <v-btn
                     @click="toggleTheme()"
@@ -58,6 +61,9 @@
       },
       backToMenu(){
         this.$router.push('/')
+      },
+      backToVpn(){
+        this.$router.push('/vpn')
       },
       handleRefreshVictims(){
         fetch(this.api + "/port").then(async (d) => {

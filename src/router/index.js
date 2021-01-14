@@ -11,12 +11,18 @@ const routes = [
     component: MainPage
   },
   {
+    path: '/vpn',
+    name: 'Vpn',
+
+    component: () => import(/* webpackChunkName: "vpn" */ '../pages/VpnPage.vue')
+  },
+  {
     path: '/shell/:sessionId',
     name: 'Shell',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../pages/ShellPage.vue')
+    component: () => import(/* webpackChunkName: "shell" */ '../pages/ShellPage.vue')
   }
 ]
 

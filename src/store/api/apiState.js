@@ -1,21 +1,6 @@
 // initial state
 const state = {
-  activeConnection: [
-    {
-      host: '127.0.0.1',
-      port: 9000
-    },
-    {
-      host: '192.168.1.25',
-      port: 25
-    },
-    {
-      host: '192.168.1.120',
-      port: 907
-    }
-  ]
-
-
+  activeConnection: []
 };
 
 // getters
