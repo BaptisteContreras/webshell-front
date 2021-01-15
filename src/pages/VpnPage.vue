@@ -22,6 +22,7 @@
         vpn : [],
         vpn2 : [],
         apiVpnHandler : null,
+        test : null
       }
     },
     methods : {
