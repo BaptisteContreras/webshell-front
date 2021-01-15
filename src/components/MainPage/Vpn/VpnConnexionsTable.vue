@@ -16,41 +16,11 @@
       },
       arrayData : {
         required : true
+      },
+      headers : {
+        required : true
       }
-    },
-    data () {
-      return {
-        headers : [
-          {
-            text: 'Common Name',
-            value: 'cn'
-          },
-          {
-            text: 'Real Address',
-            value: 'ra'
-          },
-          {
-            text: 'Virtual Address',
-            value: 'va',
-            sortable: false
-          },
-          {
-            text: 'Connected Since',
-            value: 'cs'
-          },
-          {
-            text: 'Bytes Sent',
-            value: 'bst'
-          },
-          {
-            text: 'Bytes Received',
-            value: 'bsr'
-          },
-
-        ]
-      }
-    },
-
+    }
   };
 </script>
 

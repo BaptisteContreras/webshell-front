@@ -1,6 +1,6 @@
 <template>
     <v-card>
-        <VpnConnexionsTable2  :array-data="arrayData" />
+        <VpnConnexionsTable2 :headers="headers"  :array-data="arrayData" />
     </v-card>
 </template>
 
@@ -10,6 +10,9 @@
     name: "VpnCard",
     props: {
       arrayData: {
+        required : true
+      },
+      headers : {
         required : true
       }
     },

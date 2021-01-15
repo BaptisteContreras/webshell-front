@@ -1,11 +1,11 @@
 <template>
  <v-container>
-    <VpnCard :array-data="getTabData" />
+    <VpnCard :headers="headers" :array-data="getTabData" />
    <br>
    <br>
    <h1>Vpn lié à l'active directory</h1>
 
-   <VpnCard2 :array-data="getTabData2" />
+   <VpnCard2 :headers="headers2" :array-data="getTabData2" />
  </v-container>
 </template>
 
@@ -22,7 +22,53 @@
         vpn : [],
         vpn2 : [],
         apiVpnHandler : null,
-        test : null
+        headers : [
+          {
+            text: 'Common Name',
+            value: 'cn'
+          },
+          {
+            text: 'Real Address',
+            value: 'ra'
+          },
+          {
+            text: 'Virtual Address',
+            value: 'va',
+            sortable: false
+          },
+          {
+            text: 'Connected Since',
+            value: 'cs'
+          },
+          {
+            text: 'Bytes Sent',
+            value: 'bst'
+          },
+          {
+            text: 'Bytes Received',
+            value: 'bsr'
+          },
+
+        ],
+        headers2 : [
+          {
+            text: 'Common Name',
+            value: 'cn'
+          },
+          {
+            text: 'Real Address',
+            value: 'ra'
+          },
+          {
+            text: 'Target Network',
+            value: 'tn',
+            sortable: false
+          },
+          {
+            text: 'Last Used',
+            value: 'lu'
+          }
+        ],
       }
     },
     methods : {
@@ -37,10 +83,10 @@
           tmp.querySelectorAll('tr').forEach((el)=> {
             let currentId = el.getAttribute('id');
             if (currentId){
-              if (dataCollected.currentId){
-                data2Collected.currentId = el;
+              if (dataCollected[currentId]){
+                data2Collected[currentId] = el;
               }else{
-                dataCollected.currentId = el;
+                dataCollected[currentId] = el;
               }
             }
           })

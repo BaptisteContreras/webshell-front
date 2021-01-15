@@ -9,7 +9,7 @@
                     hide-details
             ></v-text-field>
         </v-card-title>
-        <VpnConnexionsTable  :array-data="arrayData" :search="search"/>
+        <VpnConnexionsTable :headers="headers" :array-data="arrayData" :search="search"/>
 
     </v-card>
 </template>
@@ -20,6 +20,9 @@
     name: "VpnCard",
     props: {
       arrayData: {
+        required : true
+      },
+      headers : {
         required : true
       }
     },

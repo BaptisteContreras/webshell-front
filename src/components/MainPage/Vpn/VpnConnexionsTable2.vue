@@ -13,32 +13,11 @@
     props : {
       arrayData : {
         required : true
+      },
+      headers : {
+        required : true
       }
-    },
-    data () {
-      return {
-        vpn : [],
-        headers : [
-          {
-            text: 'Common Name',
-            value: 'cn'
-          },
-          {
-            text: 'Real Address',
-            value: 'ra'
-          },
-          {
-            text: 'Target Network',
-            value: 'tn',
-            sortable: false
-          },
-          {
-            text: 'Last Used',
-            value: 'lu'
-          }
-        ],
-      }
-    },
+    }
 
   };
 </script>
